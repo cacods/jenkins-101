@@ -13,7 +13,9 @@ pipeline {
                 echo "Building.."
                 sh '''
                 cd myapp
-                pip3 install -r requirements.txt --break-system-packages
+                python3 -m venv venv
+                source venv/bin/activate
+                pip install -r requirements.txt --break-system-packages
                 '''
             }
         }
@@ -22,8 +24,8 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 cd myapp
-                python3 hello.py
-                python3 hello.py --name=Brad
+                python hello.py
+                python hello.py --name=Brad
                 '''
             }
         }
